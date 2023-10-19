@@ -11,7 +11,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class GetByIdTaskResponse {
     private int id;
-    private String work;
     private String title;
     private String statement;
     private LocalDate date;

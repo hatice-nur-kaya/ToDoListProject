@@ -10,7 +10,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class CreateTaskResponse {
     private int id;
-    private String work;
     private String title;
     private String statement;
     private LocalDate date;

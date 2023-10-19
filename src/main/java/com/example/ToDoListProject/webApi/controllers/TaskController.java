@@ -15,7 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/parents")
+@RequestMapping("/api/tasks")
 @AllArgsConstructor
 public class TaskController extends BaseController {
     private final TaskService _taskService;

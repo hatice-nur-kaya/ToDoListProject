@@ -18,8 +18,6 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @Column(name = "work")
-    private String work;
     @Column(name = "title")
     private String title;
     @Column(name = "statement")
@@ -28,4 +26,7 @@ public class Task {
     private LocalDate date;
     @Column(name = "priorityLevel")
     private String priorityLevel;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 }

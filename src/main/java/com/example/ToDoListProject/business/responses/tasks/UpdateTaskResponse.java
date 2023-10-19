@@ -11,7 +11,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class UpdateTaskResponse {
     private int id;
-    private String work;
     private String title;
     private String statement;
     private LocalDate date;
