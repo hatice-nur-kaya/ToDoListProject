@@ -23,4 +23,8 @@ public class Reminder {
 
     @Column(name = "reminder_datetime")
     private LocalDateTime reminderDateTime;
+
+    @OneToOne
+    @JoinColumn(name = "task_id")
+    private Task task;
 }
