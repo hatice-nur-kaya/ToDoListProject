@@ -33,18 +33,18 @@ public class UserController extends BaseController {
     @PostMapping("add")
     public ResponseEntity<?> add(@Valid @RequestBody CreateUserRequest request) {
         DataResult<CreateUserResponse> result = _userService.add(request);
-        return GetDataResponseOnlyResultData(_userService.getAll());
+        return GetDataResponseOnlyResultData(result);
     }
 
     @PutMapping("update/{id}")
     public ResponseEntity<?> update(@RequestBody @Valid UpdateUserRequest request) {
         DataResult<UpdateUserResponse> result = _userService.update(request);
-        return GetDataResponseOnlyResultData(_userService.getAll());
+        return GetDataResponseOnlyResultData(result);
     }
 
     @DeleteMapping("delete/{id}")
     public ResponseEntity<?> delete(@RequestBody @Valid DeleteUserRequest request) {
         Result result = _userService.delete(request);
-        return GetDataResponseOnlyResultData(_userService.getAll());
+        return GetDataResponseOnlyResult(result);
     }
 }

@@ -12,4 +12,6 @@ public class GetAllReminderResponse {
     private int id;
     private String message;
     private LocalDateTime reminderDateTime;
+    private int taskId;
+    private String taskTitle;
 }

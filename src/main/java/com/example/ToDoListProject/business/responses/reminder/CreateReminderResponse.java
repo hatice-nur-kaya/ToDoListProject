@@ -13,4 +13,5 @@ public class CreateReminderResponse {
     private int id;
     private String message;
     private LocalDateTime reminderDateTime;
+    private int taskId;
 }

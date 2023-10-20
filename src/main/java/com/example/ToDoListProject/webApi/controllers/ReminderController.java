@@ -27,18 +27,18 @@ public class ReminderController extends BaseController {
     @PostMapping("add")
     public ResponseEntity<?> add(@Valid @RequestBody CreateReminderRequest request) {
         DataResult<CreateReminderResponse> result = _reminderService.add(request);
-        return GetDataResponseOnlyResultData(_reminderService.getAll());
+        return GetDataResponseOnlyResultData(result);
     }
 
     @PutMapping("update/{id}")
     public ResponseEntity<?> update(@RequestBody @Valid UpdateReminderRequest request) {
         DataResult<UpdateReminderResponse> result = _reminderService.update(request);
-        return GetDataResponseOnlyResultData(_reminderService.getAll());
+        return GetDataResponseOnlyResultData(result);
     }
 
     @DeleteMapping("delete/{id}")
     public ResponseEntity<?> delete(@RequestBody @Valid DeleteReminderRequest request) {
         Result result = _reminderService.delete(request);
-        return GetDataResponseOnlyResultData(_reminderService.getAll());
+        return GetDataResponseOnlyResult(result);
     }
 }

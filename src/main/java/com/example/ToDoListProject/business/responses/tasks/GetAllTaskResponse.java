@@ -19,5 +19,7 @@ public class GetAllTaskResponse {
     private String statement;
     private LocalDate date;
     private String priorityLevel;
-    private LocalDateTime reminderDateTime;
+    private String categoryName;
+    private String userFirstName;
+    private String userLastName;
 }

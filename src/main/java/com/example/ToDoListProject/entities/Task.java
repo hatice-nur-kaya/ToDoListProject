@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Formula;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -40,6 +41,6 @@ public class Task {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToOne(mappedBy = "task")
-    private Reminder reminder;
+    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
+    List<Reminder> reminders;
 }

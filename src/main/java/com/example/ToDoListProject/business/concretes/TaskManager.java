@@ -1,9 +1,7 @@
 package com.example.ToDoListProject.business.concretes;
 
 import com.example.ToDoListProject.business.abstracts.TaskService;
-import com.example.ToDoListProject.business.requests.tasks.CreateTaskRequest;
-import com.example.ToDoListProject.business.requests.tasks.DeleteTaskRequest;
-import com.example.ToDoListProject.business.requests.tasks.UpdateTaskRequest;
+import com.example.ToDoListProject.business.requests.tasks.*;
 import com.example.ToDoListProject.business.responses.tasks.*;
 import com.example.ToDoListProject.core.mapping.ModelMapperService;
 import com.example.ToDoListProject.core.results.DataResult;
@@ -11,6 +9,11 @@ import com.example.ToDoListProject.core.results.SuccessDataResult;
 import com.example.ToDoListProject.dataAccess.abstracts.TaskRepository;
 import com.example.ToDoListProject.entities.Task;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,8 +27,8 @@ public class TaskManager implements TaskService {
     @Override
     public DataResult<List<GetAllTaskResponse>> getAll() {
         List<Task> tasks = _taskRepository.findAll();
-        List<GetAllTaskResponse> responses = tasks.stream().map(parent -> _modelMapperService
-                .forResponse().map(parent, GetAllTaskResponse.class)).toList();
+        List<GetAllTaskResponse> responses = tasks.stream().map(task -> _modelMapperService
+                .forResponse().map(task, GetAllTaskResponse.class)).toList();
         return new SuccessDataResult<List<GetAllTaskResponse>>(responses, "Success");
     }
 
@@ -58,5 +61,23 @@ public class TaskManager implements TaskService {
         _taskRepository.delete(task);
         DeleteTaskResponse response = _modelMapperService.forResponse().map(task, DeleteTaskResponse.class);
         return new SuccessDataResult<DeleteTaskResponse>(response, "Success");
+    }
+
+    @Override
+    public DataResult<List<GetAllTaskResponse>> getAllSorted(CreatePageRequest createPageRequest) {
+        Sort sort = Sort.by(Sort.Direction.fromString(createPageRequest.getSortDirection()),createPageRequest.getSortBy());
+        Pageable pageable = PageRequest.of(createPageRequest.getPageNumber(), createPageRequest.getPageSize(),sort);
+        Page<Task> tasks = _taskRepository.findAll(pageable);
+        List<GetAllTaskResponse> responses = tasks.stream().map(task -> _modelMapperService
+                .forResponse().map(task, GetAllTaskResponse.class)).toList();
+        return new SuccessDataResult<List<GetAllTaskResponse>>(responses, "Success");
+    }
+
+    @Override
+    public DataResult<List<GetAllTaskResponse>> getAllSearch(String keyword) {
+        List<Task> tasks = _taskRepository.findByTitleContainingOrStatementContaining(keyword,keyword);
+        List<GetAllTaskResponse> responses = tasks.stream().map(task -> _modelMapperService
+                .forResponse().map(task, GetAllTaskResponse.class)).toList();
+        return new SuccessDataResult<List<GetAllTaskResponse>>(responses, "Success");
     }
 }

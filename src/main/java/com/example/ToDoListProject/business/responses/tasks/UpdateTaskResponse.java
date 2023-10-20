@@ -18,5 +18,4 @@ public class UpdateTaskResponse {
     private String statement;
     private LocalDate date;
     private String priorityLevel;
-    private LocalDateTime reminderDateTime;
 }

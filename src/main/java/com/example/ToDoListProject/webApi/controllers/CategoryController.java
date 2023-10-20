@@ -15,7 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/catogories")
+@RequestMapping("/api/categories")
 @AllArgsConstructor
 public class CategoryController extends BaseController {
     private final CategoryService _categoryService;
@@ -33,18 +33,24 @@ public class CategoryController extends BaseController {
     @PostMapping("add")
     public ResponseEntity<?> add(@Valid @RequestBody CreateCategoryRequest request) {
         DataResult<CreateCategoryResponse> result = _categoryService.add(request);
-        return GetDataResponseOnlyResultData(_categoryService.getAll());
+        return GetDataResponseOnlyResultData(result);
+    }
+
+    @GetMapping("search")
+    public ResponseEntity<?> getAllSearch(@RequestParam("keyword") String keyword
+    ) {
+        return GetDataResponseOnlyResultData(_categoryService.getAllSearch(keyword));
     }
 
     @PutMapping("update/{id}")
     public ResponseEntity<?> update(@RequestBody @Valid UpdateCategoryRequest request) {
         DataResult<UpdateCategoryResponse> result = _categoryService.update(request);
-        return GetDataResponseOnlyResultData(_categoryService.getAll());
+        return GetDataResponseOnlyResultData(result);
     }
 
     @DeleteMapping("delete/{id}")
     public ResponseEntity<?> delete(@RequestBody @Valid DeleteCategoryRequest request) {
         Result result = _categoryService.delete(request);
-        return GetDataResponseOnlyResultData(_categoryService.getAll());
+        return GetDataResponseOnlyResult(result);
     }
 }

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
 @Service
 @AllArgsConstructor
 public class CategoryManager implements CategoryService {
@@ -58,5 +59,13 @@ public class CategoryManager implements CategoryService {
         _categoryRepository.delete(category);
         DeleteCategoryResponse response = _modelMapperService.forResponse().map(category, DeleteCategoryResponse.class);
         return new SuccessDataResult<DeleteCategoryResponse>(response, "Success");
+    }
+
+    @Override
+    public DataResult<List<GetAllCategoryResponse>> getAllSearch(String keyword) {
+        List<Category> categories = _categoryRepository.findByName(keyword);
+        List<GetAllCategoryResponse> responses = categories.stream().map(category -> _modelMapperService
+                .forResponse().map(category, GetAllCategoryResponse.class)).toList();
+        return new SuccessDataResult<List<GetAllCategoryResponse>>(responses, "Success");
     }
 }

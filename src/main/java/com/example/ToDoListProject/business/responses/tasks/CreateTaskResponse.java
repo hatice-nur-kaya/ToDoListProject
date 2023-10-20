@@ -16,7 +16,6 @@ public class CreateTaskResponse {
     private String statement;
     private LocalDate date;
     private String priorityLevel;
-    private LocalDateTime reminderDateTime;
     private int categoryId;
     private int userId;
 }

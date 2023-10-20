@@ -11,4 +11,5 @@ import java.time.LocalDateTime;
 public class CreateReminderRequest {
     private String message;
     private LocalDateTime reminderDateTime;
+    private int taskId;
 }

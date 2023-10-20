@@ -4,6 +4,7 @@ import com.example.ToDoListProject.business.requests.categories.CreateCategoryRe
 import com.example.ToDoListProject.business.requests.categories.DeleteCategoryRequest;
 import com.example.ToDoListProject.business.requests.categories.UpdateCategoryRequest;
 import com.example.ToDoListProject.business.responses.categories.*;
+import com.example.ToDoListProject.business.responses.tasks.GetAllTaskResponse;
 import com.example.ToDoListProject.core.results.DataResult;
 
 import java.util.List;
@@ -18,4 +19,6 @@ public interface CategoryService {
     DataResult<UpdateCategoryResponse> update(UpdateCategoryRequest request);
 
     DataResult<DeleteCategoryResponse> delete(DeleteCategoryRequest request);
+    DataResult<List<GetAllCategoryResponse>> getAllSearch(String keyword);
+
 }

@@ -1,8 +1,6 @@
 package com.example.ToDoListProject.business.abstracts;
 
-import com.example.ToDoListProject.business.requests.tasks.CreateTaskRequest;
-import com.example.ToDoListProject.business.requests.tasks.DeleteTaskRequest;
-import com.example.ToDoListProject.business.requests.tasks.UpdateTaskRequest;
+import com.example.ToDoListProject.business.requests.tasks.*;
 import com.example.ToDoListProject.business.responses.tasks.*;
 import com.example.ToDoListProject.core.results.DataResult;
 
@@ -18,4 +16,6 @@ public interface TaskService {
     DataResult<UpdateTaskResponse> update(UpdateTaskRequest request);
 
     DataResult<DeleteTaskResponse> delete(DeleteTaskRequest request);
+    DataResult<List<GetAllTaskResponse>> getAllSorted(CreatePageRequest createPageRequest);
+    DataResult<List<GetAllTaskResponse>> getAllSearch(String keyword);
 }
