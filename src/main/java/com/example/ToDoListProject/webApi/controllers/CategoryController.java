@@ -42,7 +42,7 @@ public class CategoryController extends BaseController {
         return GetDataResponseOnlyResultData(_categoryService.getAll());
     }
 
-    @DeleteMapping("deleye/{id}")
+    @DeleteMapping("delete/{id}")
     public ResponseEntity<?> delete(@RequestBody @Valid DeleteCategoryRequest request) {
         Result result = _categoryService.delete(request);
         return GetDataResponseOnlyResultData(_categoryService.getAll());
