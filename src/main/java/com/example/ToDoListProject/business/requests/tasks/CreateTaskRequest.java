@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -14,4 +15,5 @@ public class CreateTaskRequest {
     private String statement;
     private LocalDate date;
     private String priorityLevel;
+    private LocalDateTime reminderDateTime;
 }
